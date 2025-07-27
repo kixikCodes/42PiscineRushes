@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmonzon <nmonzon@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/22 15:57:32 by nmonzon           #+#    #+#             */
+/*   Updated: 2025/07/22 16:04:28 by nmonzon          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef RUSH01_H
 # define RUSH01_H
 
@@ -11,8 +23,8 @@
 #  define SIZE 4
 # endif
 
-// Commonly passed things to bypass 4 argument limit
-typedef struct	s_args
+// Commonly passed stuff to bypass 4 argument limit
+typedef struct s_args
 {
 	int		grid[SIZE][SIZE];
 	int		clues[16];
@@ -28,7 +40,6 @@ int		ft_atoi(const char *str);
 
 // Solver Program Functions
 bool	parse_input(char *input, t_args *stuff);
-bool	is_valid(int row, int col, int val, int grid[SIZE][SIZE]);
 int		count_visible(int *line);
 void	get_line(int *line, int index, t_args *stuff);
 bool	solve(int row, int col, t_args *stuff);

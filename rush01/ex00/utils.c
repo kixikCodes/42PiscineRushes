@@ -1,17 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmonzon <nmonzon@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/22 15:57:32 by nmonzon           #+#    #+#             */
+/*   Updated: 2025/07/22 16:04:28 by nmonzon          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rush01.h"
 
-bool	is_valid(int row, int col, int val, int grid[SIZE][SIZE])
-{
-	int	i;
-
-	i = -1;
-	while (++i < SIZE)
-		if (grid[row][i] == val || grid[i][col] == val)
-			return (false);
-	return (true);
-}
-
-int		count_visible(int *line)
+int	count_visible(int *line)
 {
 	int	count;
 	int	max;
@@ -45,7 +46,7 @@ void	get_line(int *line, int index, t_args *stuff)
 				val = stuff->grid[index][SIZE - 1 - i];
 			else
 				val = stuff->grid[index][i];
-		} 
+		}
 		else
 		{
 			if (stuff->reverse)

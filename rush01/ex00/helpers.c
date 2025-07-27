@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmonzon <nmonzon@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/22 15:57:32 by nmonzon           #+#    #+#             */
+/*   Updated: 2025/07/22 16:04:28 by nmonzon          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rush01.h"
 
 char	*ft_strncpy(char *dest, char *src, unsigned int n)
@@ -23,7 +35,6 @@ char	*ft_strtok(char *str, char delim)
 	static char	*next;
 	char		*start;
 
-	next = NULL;
 	if (str != NULL)
 		next = str;
 	if (next == NULL)
@@ -65,7 +76,7 @@ void	ft_putnbr(int n)
 	}
 }
 
-int		ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int	result;
 	int	sign;
