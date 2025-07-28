@@ -6,7 +6,7 @@
 /*   By: nmonzon <nmonzon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 15:57:32 by nmonzon           #+#    #+#             */
-/*   Updated: 2025/07/22 16:04:28 by nmonzon          ###   ########.fr       */
+/*   Updated: 2025/07/28 16:40:22 by nmonzon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	main(int argc, char **argv)
 	t_args	stuff;
 
 	if (argc != 2)
-		return (write(2, "Error\n", 6), 1);
+		return (write(2, "Error 1\n", 8), 1);
 	ft_strncpy(input_copy, argv[1], sizeof(input_copy) - 1);
 	input_copy[sizeof(input_copy) - 1] = '\0';
 	if (!parse_input(input_copy, &stuff))
-		return (write(2, "Error\n", 6), 1);
+		return (write(2, "Error 2\n", 8), 1);
 	if (!solve(0, 0, &stuff))
-		return (write(2, "Error\n", 6), 1);
+		return (write(2, "Error 3\n", 8), 1);
 	print_grid(stuff);
 	return (0);
 }
