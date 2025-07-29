@@ -6,11 +6,14 @@
 /*   By: nmonzon <nmonzon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 15:58:55 by nmonzon           #+#    #+#             */
-/*   Updated: 2025/07/22 15:59:06 by nmonzon          ###   ########.fr       */
+/*   Updated: 2025/07/29 11:48:29 by nmonzon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+
 int	main(void)
 {
+	printf("They removed this one. :c\n");
 	return (0);
 }
