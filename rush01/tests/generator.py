@@ -1,3 +1,5 @@
+# THIS WAS WRITTEN BY SOMEONE AT 42, NOT ME!
+
 from __future__ import print_function
 import sys
 import random

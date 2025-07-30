@@ -1,5 +1,4 @@
-#bin/bash
-# argc == 1 and argc == 3 are hard coded into the executable
+#		TEST CASES (NOT DESGINED/PICKED BY ME, THANK SOMEONE ELSE AT 42)
 
 # Wrong format
 # - Trailing Space
@@ -14,10 +13,10 @@ Error
 # - Wrong space character
 4a2 2 1 1 2 3 3 4 2 2 1 1 2 3 3
 Error
-# - To low number
+# - Too low number
 0 2 2 1 1 2 3 3 4 2 2 1 1 2 3 3
 Error
-# - To high number
+# - Too high number
 5 2 2 1 1 2 3 3 4 2 2 1 1 2 3 3
 Error
 

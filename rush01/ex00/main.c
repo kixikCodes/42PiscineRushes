@@ -18,13 +18,13 @@ int	main(int argc, char **argv)
 	t_args	stuff;
 
 	if (argc != 2)
-		return (write(2, "Error\n", 6), 1);
+		return (write(1, "Error\n", 6), 1);
 	ft_strncpy(input_copy, argv[1], sizeof(input_copy) - 1);
 	input_copy[sizeof(input_copy) - 1] = '\0';
 	if (!parse_input(input_copy, &stuff))
-		return (write(2, "Error\n", 6), 1);
+		return (write(1, "Error\n", 6), 1);
 	if (!solve(0, 0, &stuff))
-		return (write(2, "Error\n", 6), 1);
+		return (write(1, "Error\n", 6), 1);
 	print_grid(stuff);
 	return (0);
 }
