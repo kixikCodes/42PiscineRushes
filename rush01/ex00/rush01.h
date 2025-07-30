@@ -6,7 +6,7 @@
 /*   By: nmonzon <nmonzon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 15:57:32 by nmonzon           #+#    #+#             */
-/*   Updated: 2025/07/28 16:39:34 by nmonzon          ###   ########.fr       */
+/*   Updated: 2025/07/30 16:39:03 by nmonzon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ int		count_visible(int *line);
 void	get_line(int *line, int index, t_args *stuff);
 bool	solve(int row, int col, t_args *stuff);
 void	print_grid(t_args stuff);
+int		to_digit(const char c);
+bool	ft_isdigit(int c);
 
 #endif

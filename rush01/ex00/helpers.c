@@ -6,7 +6,7 @@
 /*   By: nmonzon <nmonzon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 15:57:32 by nmonzon           #+#    #+#             */
-/*   Updated: 2025/07/28 16:39:42 by nmonzon          ###   ########.fr       */
+/*   Updated: 2025/07/30 16:38:58 by nmonzon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,18 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (sign * result);
+}
+
+int	to_digit(const char c)
+{
+	return (c - '0');
+}
+
+bool	ft_isdigit(int c)
+{
+	if (c == '\0')
+		return (false);
+	if (c >= 48 && c <= 57)
+		return (true);
+	return (false);
 }
