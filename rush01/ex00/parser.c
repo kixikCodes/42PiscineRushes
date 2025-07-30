@@ -6,7 +6,7 @@
 /*   By: nmonzon <nmonzon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 15:57:32 by nmonzon           #+#    #+#             */
-/*   Updated: 2025/07/30 16:50:18 by nmonzon          ###   ########.fr       */
+/*   Updated: 2025/07/30 18:29:05 by nmonzon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	parse_input(char *input, t_args *stuff)
 	int		i;
 
 	i = 0;
-	while (input[i])
+	while (input[i] != '\0')
 	{
 		if (i % 2 == 0)
 		{
@@ -28,15 +28,16 @@ bool	parse_input(char *input, t_args *stuff)
 			val = to_digit(input[i]);
 			if (val < 1 || val > 4)
 				return (false);
+			stuff->clues[i++] = val;
+			//printf("%d ", val);
 		}
 		else if (i % 2 != 0)
 		{
 			if (input[i] != ' ')
 				return (false);
-			continue ;
 		}
-		//printf("%d ", val);
-		stuff->clues[i++] = val;
+		i++;
 	}
-	return (i == 16);
+	//printf("\n%d\n", i);
+	return (i == 30);
 }
