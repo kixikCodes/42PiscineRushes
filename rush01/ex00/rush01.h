@@ -33,10 +33,9 @@ typedef struct s_args
 }	t_args;
 
 // Helper Functions
-char	*ft_strncpy(char *dest, char *src, unsigned int n);
-char	*ft_strtok(char *str, char delim);
 void	ft_putnbr(int n);
-int		ft_atoi(const char *str);
+int		to_digit(const char c);
+bool	ft_isdigit(int c);
 
 // Solver Program Functions
 bool	parse_input(char *input, t_args *stuff);
@@ -44,7 +43,5 @@ int		count_visible(int *line);
 void	get_line(int *line, int index, t_args *stuff);
 bool	solve(int row, int col, t_args *stuff);
 void	print_grid(t_args stuff);
-int		to_digit(const char c);
-bool	ft_isdigit(int c);
 
 #endif

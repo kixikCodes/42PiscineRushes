@@ -14,18 +14,16 @@
 
 int	main(int argc, char **argv)
 {
-	char	input_copy[256];
 	t_args	stuff;
 
 	if (argc != 2)
-		return (write(1, "Argument Error\n", 15), 1);
-	ft_strncpy(input_copy, argv[1], sizeof(input_copy) - 1);
-	input_copy[sizeof(input_copy) - 1] = '\0';
-	if (!parse_input(input_copy, &stuff))
-		return (write(1, "Parse Error\n", 12), 1);
+		return (write(1, "Error\n", 7), 1);
+	if (!parse_input(argv[1], &stuff))
+		return (write(1, "Error\n", 7), 1);
 	if (!solve(0, 0, &stuff))
-		return (write(1, "Solve Error\n", 12), 1);
+		return (write(1, "Error\n", 7), 1);
 	print_grid(stuff);
+
 	return (0);
 }
 /// Compilation:
