@@ -23,7 +23,6 @@ int	main(int argc, char **argv)
 	if (!solve(0, 0, &stuff))
 		return (write(1, "Error\n", 7), 1);
 	print_grid(stuff);
-
 	return (0);
 }
 /// Compilation:
