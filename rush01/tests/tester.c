@@ -145,7 +145,7 @@ int		run_solver(const char *solver_path, const char *input, char *output, size_t
 	if (pid == 0) {
 		// Child
 		dup2(pipefd[1], STDOUT_FILENO);
-		dup2(pipefd[1], STDERR_FILENO);
+		dup2(pipefd[1], STDERR_FILENO); // In case they use stderr
 		close(pipefd[0]);
 		close(pipefd[1]);
 
@@ -160,7 +160,7 @@ int		run_solver(const char *solver_path, const char *input, char *output, size_t
 		exit(1);
 	} else {
 		// Parent
-		usleep(2000);
+		usleep(2000);	// If you dont give it a bit of time it breaks. Its a bit senile.
 		close(pipefd[1]);
 		ssize_t n = read(pipefd[0], output, outsz - 1);
 		if (n < 0) n = 0;
@@ -188,7 +188,8 @@ int		main(int argc, char **argv)
 	}
 
 	char line[MAX_LINE], input[MAX_LINE], expected[MAX_LINE], output[MAX_LINE * 4];
-	int total = 0, pass = 0;
+	int total = 0;
+	int pass = 0;
 	while (fgets(line, sizeof(line), f)) {
 		if (line[0] == '#' || line[0] == '\n')
 			continue;
@@ -207,19 +208,22 @@ int		main(int argc, char **argv)
 			output[len - 1] = 0;
 		total++;
 		if (strcmp(expected, "Error") == 0) {
-			if (strcmp(output, "Error") == 0)
-				printf(GREEN "[%d] Error case: PASS\n" RESET, total), pass++;
-			else
+			if (strcmp(output, "Error") == 0) {
+				printf(GREEN "[%d] Error case: PASS\n" RESET, total);
+				pass++;
+			} else
 				printf(RED "[%d] Error case: FAIL\nGot:\n'%s')\n" RESET, total, output);
 		} else if (strcmp(expected, "Valid") == 0) {
 			int grid[SIZE][SIZE];
 			if (strcmp(output, "Error") == 0 || !parse_grid(output, grid) || !is_valid_grid(grid)
 				|| !satisfies_clues(input, grid))
 				printf(RED "[%d] Valid case: FAIL\ngot:\n'%s'\n" RESET, total, output);
-			else
-				printf(GREEN "[%d] Valid case: PASS\n" RESET, total), pass++;
+			else {
+				printf(GREEN "[%d] Valid case: PASS\n" RESET, total);
+				pass++;
+			}
 		} else
-			printf("[%d] Unknown expected output: '%s'\n", total, expected);
+			printf("Unexpected syntax in cases file.\n", total, expected);
 	}
 	fclose(f);
 	printf("\nPassed %d out of %d tests.\n", pass, total);

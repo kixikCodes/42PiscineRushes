@@ -1,5 +1,14 @@
 #		TEST CASES (NOT DESGINED/PICKED BY ME, THANK SOMEONE ELSE AT 42)
 
+# This file is parsed by my tester and has to be formatted very specifically.
+# Empty lines and '#' prefixed lines are ignored, but everything else counts.
+# The tester program expects first a case line which it will pass to the Pisciners'
+# solver program as is, and then an expected result. This can only be "Error" or
+# "Valid". Anything else will give an unexpected syntax error. For the valid cases
+# the tester will actually ensure that they are a legit solution and not just a bunch
+# of numbers in a grid. Using the python generator that was already provided to us
+# can also yeild more cases if you don't think these 300+ are enough!
+
 # Wrong format
 # - Trailing Space
 4 2 2 1 1 2 3 3 4 2 2 1 1 2 3 3 
@@ -10,7 +19,7 @@ Error
 # - No Spaces
 4221123342211233                
 Error
-# - Wrong space character
+# - Wrong delimiter character
 4a2 2 1 1 2 3 3 4 2 2 1 1 2 3 3
 Error
 # - Too low number
