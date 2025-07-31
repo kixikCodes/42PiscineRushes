@@ -175,7 +175,7 @@ int		run_solver(const char *solver_path, const char *input, char *output, size_t
 int		main(int argc, char **argv)
 {
 	if (argc < 3) {
-		printf("Usage: %s <solver_path> <cases_file>\n", argv[0]);
+		printf("Usage: %s [solver path] [cases file]\n", argv[0]);
 		return 1;
 	}
 
@@ -202,7 +202,7 @@ int		main(int argc, char **argv)
 		len = strlen(expected);
 		if (len > 0 && expected[len - 1] == '\n')
 			expected[len - 1] = 0;
-		int status = run_solver(solver_path, input, output, sizeof(output));
+		run_solver(solver_path, input, output, sizeof(output));
 		len = strlen(output);
 		if (len > 0 && output[len - 1] == '\n')
 			output[len - 1] = 0;
@@ -212,18 +212,18 @@ int		main(int argc, char **argv)
 				printf(GREEN "[%d] Error case: PASS\n" RESET, total);
 				pass++;
 			} else
-				printf(RED "[%d] Error case: FAIL\nGot:\n'%s')\n" RESET, total, output);
+				printf(RED "[%d] Error case: FAIL\n'%s')\n" RESET, total, output);
 		} else if (strcmp(expected, "Valid") == 0) {
 			int grid[SIZE][SIZE];
 			if (strcmp(output, "Error") == 0 || !parse_grid(output, grid) || !is_valid_grid(grid)
 				|| !satisfies_clues(input, grid))
-				printf(RED "[%d] Valid case: FAIL\ngot:\n'%s'\n" RESET, total, output);
+				printf(RED "[%d] Valid case: FAIL\n'%s'\n" RESET, total, output);
 			else {
 				printf(GREEN "[%d] Valid case: PASS\n" RESET, total);
 				pass++;
 			}
 		} else
-			printf("Unexpected syntax in cases file.\n", total, expected);
+			printf("Unexpected syntax in cases file.\n");
 	}
 	fclose(f);
 	printf("\nPassed %d out of %d tests.\n", pass, total);

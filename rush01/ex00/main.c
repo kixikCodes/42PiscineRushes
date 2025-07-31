@@ -6,7 +6,7 @@
 /*   By: nmonzon <nmonzon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 15:57:32 by nmonzon           #+#    #+#             */
-/*   Updated: 2025/07/30 18:23:48 by nmonzon          ###   ########.fr       */
+/*   Updated: 2025/07/31 15:26:30 by nmonzon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ int	main(int argc, char **argv)
 	print_grid(stuff);
 	return (0);
 }
-/// Compilation:
+// Compilation:
 // cc -Wall -Wextra -Werror *.c -o rush-01
