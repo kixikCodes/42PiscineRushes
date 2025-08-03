@@ -15,8 +15,8 @@
 
 bool	parse_input(char *input, t_args *stuff)
 {
-	int		val;
-	int		i;
+	int	val;
+	int	i;
 
 	i = 0;
 	while (input[i] != '\0')
@@ -31,10 +31,8 @@ bool	parse_input(char *input, t_args *stuff)
 			stuff->clues[i / 2] = val;
 		}
 		else if (i % 2 != 0)
-		{
 			if (input[i] != ' ')
 				return (false);
-		}
 		i++;
 	}
 	return (i == 31);

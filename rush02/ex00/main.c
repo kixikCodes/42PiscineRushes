@@ -10,10 +10,62 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "rush02.h"
 
-int	main(void)
+static bool	valid(char *str)
 {
-	printf("They removed this one. :c\n");
-	return (0);
+	int	i;
+
+	i = -1;
+	while (str[++i] != '\0')
+		if (str[i] < '0' || str[i] > '9')
+			return (false);
+	return (true);
+}
+
+static int	run(t_word_arrays *arrays, char *dict, char *input, char *result)
+{
+	t_parser_data	data;
+
+	data.idx = 0;
+	data.number[0] = '\0';
+	data.word[0] = '\0';
+	allocate_memory(arrays);
+	if (!parsed_dict(arrays, &data, dict))
+		return (EXIT_FAILURE);
+	ntow(ft_atoll(input), &result, arrays);
+	write(STDOUT_FILENO, result, ft_strlen(result));
+	write(STDOUT_FILENO, "\n", 1);
+	free_memory(arrays);
+	free(arrays);
+	return (EXIT_SUCCESS);
+}
+
+int	main(int argc, char *argv[])
+{
+	char			*result;
+	t_word_arrays	*arrays;
+	char			*dict_name;
+	char			*numstring;
+
+	arrays = malloc(sizeof(t_word_arrays));
+	result = malloc(1000);
+	if (argc != 2 && argc != 3)
+		return (EXIT_FAILURE);
+	if (argc == 3)
+	{
+		dict_name = argv[1];
+		numstring = argv[2];
+	}
+	else
+	{
+		dict_name = "numbers.dict";
+		numstring = argv[1];
+	}
+	if (!valid(numstring) != 0)
+	{
+		write(STDERR_FILENO, "Error\n", 6);
+		return (EXIT_FAILURE);
+	}
+	return (run(arrays, dict_name, numstring, result));
 }

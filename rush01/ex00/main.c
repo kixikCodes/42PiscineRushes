@@ -17,11 +17,11 @@ int	main(int argc, char **argv)
 	t_args	stuff;
 
 	if (argc != 2)
-		return (write(1, "Error\n", 7), 1);
+		return (write(1, "Error\n", 6), 1);
 	if (!parse_input(argv[1], &stuff))
-		return (write(1, "Error\n", 7), 1);
+		return (write(1, "Error\n", 6), 1);
 	if (!solve(0, 0, &stuff))
-		return (write(1, "Error\n", 7), 1);
+		return (write(1, "Error\n", 6), 1);
 	print_grid(stuff);
 	return (0);
 }
