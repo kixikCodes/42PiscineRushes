@@ -6,11 +6,24 @@
 /*   By: nmonzon <nmonzon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 15:57:32 by nmonzon           #+#    #+#             */
-/*   Updated: 2025/07/30 16:38:58 by nmonzon          ###   ########.fr       */
+/*   Updated: 2025/08/04 15:05:29 by nmonzon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rush01.h"
+
+void	*ft_memset(void *b, int c, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		((char *)b)[i] = c;
+		i++;
+	}
+	return (b);
+}
 
 void	ft_putnbr(int n)
 {
@@ -30,11 +43,6 @@ void	ft_putnbr(int n)
 		c = n % 10 + '0';
 		write(1, &c, 1);
 	}
-}
-
-int	to_digit(const char c)
-{
-	return (c - '0');
 }
 
 bool	ft_isdigit(int c)

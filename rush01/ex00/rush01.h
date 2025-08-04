@@ -6,7 +6,7 @@
 /*   By: nmonzon <nmonzon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 15:57:32 by nmonzon           #+#    #+#             */
-/*   Updated: 2025/07/30 16:39:03 by nmonzon          ###   ########.fr       */
+/*   Updated: 2025/08/04 15:03:31 by nmonzon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_args
 void	ft_putnbr(int n);
 int		to_digit(const char c);
 bool	ft_isdigit(int c);
+void	*ft_memset(void *b, int c, size_t n);
 
 // Solver Program Functions
 bool	parse_input(char *input, t_args *stuff);

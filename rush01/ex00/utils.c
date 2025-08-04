@@ -6,11 +6,16 @@
 /*   By: nmonzon <nmonzon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 15:57:32 by nmonzon           #+#    #+#             */
-/*   Updated: 2025/07/28 16:39:38 by nmonzon          ###   ########.fr       */
+/*   Updated: 2025/08/04 15:05:38 by nmonzon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rush01.h"
+
+int	to_digit(const char c)
+{
+	return (c - '0');
+}
 
 int	count_visible(int *line)
 {

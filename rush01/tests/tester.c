@@ -2,7 +2,7 @@
 // Test cases in "cases" file.
 // Any output that isnt eaxctly correct or a genuine solution is marked as FAIL.
 // If any tests fail, the rush is a 0.
-// Written by kixikCodes (nmonzon), July 2025.
+// Written by kixikCodes (nmonzon), August 2025.
 // :3
 
 #include <stdio.h>
@@ -19,6 +19,8 @@
 #define RED		"\x1b[31m"
 #define GREEN	"\x1b[32m"
 #define RESET	"\x1b[0m"
+
+extern char **environ;
 
 bool	is_error(const char *out)
 {
@@ -155,12 +157,12 @@ int		run_solver(const char *solver_path, const char *input, char *output, size_t
 		char *input_copy = strdup(input);
 		args[argc++] = input_copy;
 		args[argc] = NULL;
-		execve(solver_path, args, NULL);
+		execve(solver_path, args, environ);
 		perror("execve");
 		exit(1);
 	} else {
 		// Parent
-		usleep(2000);	// If you dont give it a bit of time it breaks. Its a bit senile.
+		usleep(5000);	// If you dont give it a bit of time it breaks. Its a bit senile.
 		close(pipefd[1]);
 		ssize_t n = read(pipefd[0], output, outsz - 1);
 		if (n < 0) n = 0;
