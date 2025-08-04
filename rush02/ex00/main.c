@@ -36,11 +36,13 @@ static int	run(t_words *arrays, char *dict, char *input, char *result)
 	if (!parsed_dict(arrays, &data, dict))
 		return (EXIT_FAILURE);
 	if (n == 0)
-		write(STDOUT_FILENO, "zero", 4);
+		write(STDOUT_FILENO, "zero\n", 5);
 	else
+	{
 		ntow(n, &result, arrays);
-	write(STDOUT_FILENO, result, ft_strlen(result));
-	write(STDOUT_FILENO, "\n", 1);
+		write(STDOUT_FILENO, result, ft_strlen(result));
+		write(STDOUT_FILENO, "\n", 1);
+	}
 	free_memory(arrays);
 	free(arrays);
 	free(result);

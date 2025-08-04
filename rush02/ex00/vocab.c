@@ -14,14 +14,16 @@
 
 static void	find_thousand(t_words *vocab, char *word, int n)
 {
-	int	i;
-	int	thousand;
+	int			i;
+	long long	thousand;
+	long long	ln;
 
 	i = 0;
 	thousand = 1000;
-	while (i < 12)
+	ln = (long long)n;
+	while (i < 3)
 	{
-		if (n == thousand)
+		if (ln == thousand)
 		{
 			ft_strcpy(vocab->powers_of_ten[i], word);
 			break ;

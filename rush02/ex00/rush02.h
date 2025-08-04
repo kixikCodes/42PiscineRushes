@@ -38,8 +38,8 @@ typedef struct s_parser_data
 	char	buffer[BUFFERSIZE];
 	ssize_t	bytes_read;
 	bool	reached_word;
-	char	number[100];
-	char	word[100];
+	char	number[32];
+	char	word[1024];
 }	t_parser_data;
 
 // Parser Line Status
