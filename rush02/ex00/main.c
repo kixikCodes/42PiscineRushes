@@ -18,37 +18,43 @@ static bool	valid(char *str)
 
 	i = -1;
 	while (str[++i] != '\0')
-		if (str[i] < '0' || str[i] > '9')
+		if ((str[i] < '0' || str[i] > '9') && str[i] != '-')
 			return (false);
 	return (true);
 }
 
-static int	run(t_word_arrays *arrays, char *dict, char *input, char *result)
+static int	run(t_words *arrays, char *dict, char *input, char *result)
 {
 	t_parser_data	data;
+	int				n;
 
 	data.idx = 0;
 	data.number[0] = '\0';
 	data.word[0] = '\0';
+	n = ft_atoi(input);
 	allocate_memory(arrays);
 	if (!parsed_dict(arrays, &data, dict))
 		return (EXIT_FAILURE);
-	ntow(ft_atoll(input), &result, arrays);
+	if (n == 0)
+		write(STDOUT_FILENO, "zero", 4);
+	else
+		ntow(n, &result, arrays);
 	write(STDOUT_FILENO, result, ft_strlen(result));
 	write(STDOUT_FILENO, "\n", 1);
 	free_memory(arrays);
 	free(arrays);
+	free(result);
 	return (EXIT_SUCCESS);
 }
 
 int	main(int argc, char *argv[])
 {
-	char			*result;
-	t_word_arrays	*arrays;
-	char			*dict_name;
-	char			*numstring;
+	char	*result;
+	t_words	*arrays;
+	char	*dict_name;
+	char	*numstring;
 
-	arrays = malloc(sizeof(t_word_arrays));
+	arrays = malloc(sizeof(t_words));
 	result = malloc(1000);
 	if (argc != 2 && argc != 3)
 		return (EXIT_FAILURE);

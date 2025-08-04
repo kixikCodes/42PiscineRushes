@@ -68,12 +68,12 @@ char	*ft_strcat(char *dest, char *src)
 	return (dest);
 }
 
-long long	ft_atoll(char *str)
+int	ft_atoi(char *str)
 {
-	long long	result;
-	int			sign;
-	int			i;
-	int			counter;
+	int	result;
+	int	sign;
+	int	i;
+	int	counter;
 
 	result = 0;
 	sign = 1;

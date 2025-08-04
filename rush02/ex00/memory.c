@@ -21,7 +21,7 @@ static void	allocate_array(char **array, int size)
 		array[i] = malloc(100);
 }
 
-void	allocate_memory(t_word_arrays *arrays)
+void	allocate_memory(t_words *arrays)
 {
 	arrays->zero = malloc(10);
 	arrays->ones_words = malloc(10 * sizeof(char *));
@@ -34,7 +34,7 @@ void	allocate_memory(t_word_arrays *arrays)
 	allocate_array(arrays->powers_of_ten, 12);
 }
 
-void	free_memory(t_word_arrays *arrays)
+void	free_memory(t_words *arrays)
 {
 	int	i;
 

@@ -12,89 +12,85 @@
 
 #include "rush02.h"
 
-static void	remove_space(char *result)
+void	init_chunk(t_currchunk *current, int n)
 {
-	int	i;
-
-	i = -1;
-	while (result[++i] != '\0')
-		result[i] = result[i + 1];
+	current->chunk_words[0] = '\0';
+	current->chunk_value = n % 1000;
+	current->hundreds_digit = current->chunk_value / 100;
+	current->tens_digit = (current->chunk_value / 10) % 10;
+	current->ones_digit = current->chunk_value % 10;
 }
 
-void	ntow(long long n, char **result, t_word_arrays *arrays)
+void	add_word(char *word, char *chunk_words)
+{
+	ft_strcat(chunk_words, " ");
+	ft_strcat(chunk_words, word);
+}
+
+void	build_chunk(t_words *vocab, t_currchunk *chunk, int chunk_count)
+{
+	if (chunk->hundreds_digit != 0)
+	{
+		add_word(vocab->ones_words[chunk->hundreds_digit], chunk->chunk_words);
+		ft_strcat(chunk->chunk_words, " hundred");
+	}
+	if (chunk->tens_digit > 1)
+	{
+		add_word(vocab->tens_words[chunk->tens_digit], chunk->chunk_words);
+		if (chunk->ones_digit != 0)
+			add_word(vocab->ones_words[chunk->ones_digit], chunk->chunk_words);
+	}
+	else if (chunk->tens_digit == 1)
+		add_word(vocab->teens_words[chunk->ones_digit], chunk->chunk_words);
+	else if (chunk->ones_digit != 0)
+		add_word(vocab->ones_words[chunk->ones_digit], chunk->chunk_words);
+	if (chunk_count > 0)
+		add_word(vocab->powers_of_ten[chunk_count - 1], chunk->chunk_words);
+}
+
+static void	fixup(int idx, char chunks[100][1000], char *words, char **result)
+{
+	int	i;
+	int	j;
+
+	while (idx-- > 0)
+		if (chunks[idx][0] != '\0')
+			ft_strcat(words, chunks[idx]);
+	*result = ft_strdup(words);
+	i = 0;
+	j = 0;
+	while ((*result)[i] == ' ')
+		i++;
+	while ((*result)[i])
+		(*result)[j++] = (*result)[i++];
+	(*result)[j] = '\0';
+}
+
+void	ntow(int n, char **result, t_words *vocab)
 {
 	char		words[1000];
 	int			chunk_count;
-	long long	chunk;
-	char		chunk_words[1000];
-	int			hundreds_digit;
-	int			tens_digit;
-	int			ones_digit;
 	char		chunks[100][1000];
+	t_currchunk	current;
 	int			i;
 
-	words[0] = '\0';
 	chunk_count = 0;
 	i = 0;
+	words[0] = '\0';
 	if (n < 0)
 	{
 		*result = ft_strdup("Error");
 		return ;
 	}
-	if (n == 0)
-	{
-		*result = arrays->zero;
-		return ;
-	}
 	while (n > 0)
 	{
-		chunk_words[0] = '\0';
-		chunk = n % 1000;
-		hundreds_digit = chunk / 100;
-		tens_digit = (chunk / 10) % 10;
-		ones_digit = chunk % 10;
-		if (chunk != 0)
-		{
-			if (hundreds_digit != 0)
-			{
-				ft_strcat(chunk_words, " ");
-				ft_strcat(chunk_words, arrays->ones_words[hundreds_digit]);
-				ft_strcat(chunk_words, " hundred");
-			}
-			if (tens_digit > 1)
-			{
-				ft_strcat(chunk_words, " ");
-				ft_strcat(chunk_words, arrays->tens_words[tens_digit]);
-				if (ones_digit != 0)
-				{
-					ft_strcat(chunk_words, " ");
-					ft_strcat(chunk_words, arrays->ones_words[ones_digit]);
-				}
-			}
-			else if (tens_digit == 1)
-			{
-				ft_strcat(chunk_words, " ");
-				ft_strcat(chunk_words, arrays->teens_words[ones_digit]);
-			}
-			else if (ones_digit != 0)
-			{
-				ft_strcat(chunk_words, " ");
-				ft_strcat(chunk_words, arrays->ones_words[ones_digit]);
-			}
-			if (chunk_count > 0)
-			{
-				ft_strcat(chunk_words, " ");
-				ft_strcat(chunk_words, arrays->powers_of_ten[chunk_count]);
-			}
-		}
-		ft_strcpy(chunks[i], chunk_words);
+		init_chunk(&current, n);
+		if (current.chunk_value != 0)
+			build_chunk(vocab, &current, chunk_count);
+		ft_strcpy(chunks[i], current.chunk_words);
 		n /= 1000;
 		chunk_count++;
 		i++;
 	}
-	while (i-- > 0)
-		if (chunks[i][0] != '\0')
-			ft_strcat(words, chunks[i]);
-	*result = ft_strdup(words);
-	remove_space(*result);
+	fixup(i, chunks, words, result);
 }

@@ -22,14 +22,14 @@
 # define BUFFERSIZE 1
 
 // Number Words Dictionary
-typedef struct s_word_arrays
+typedef struct s_words
 {
 	char	*zero;
 	char	**ones_words;
 	char	**teens_words;
 	char	**tens_words;
 	char	**powers_of_ten;
-}	t_word_arrays;
+}	t_words;
 
 // Parser Variables
 typedef struct s_parser_data
@@ -50,22 +50,32 @@ typedef enum e_line_status
 	LINE_DONE
 }	t_line_status;
 
+// Converter Current Chunk
+typedef struct s_currchunk
+{
+	int		chunk_value;
+	char	chunk_words[1000];
+	int		hundreds_digit;
+	int		tens_digit;
+	int		ones_digit;
+}	t_currchunk;
+
 // Utils
-long long	ft_atoll(char *str);
-size_t		ft_strlen(char *str);
-char		*ft_strcpy(char *dest, char *src);
-char		*ft_strcat(char *dest, char *src);
-char		*ft_strdup(char *str);
+int		ft_atoi(char *str);
+size_t	ft_strlen(char *str);
+char	*ft_strcpy(char *dest, char *src);
+char	*ft_strcat(char *dest, char *src);
+char	*ft_strdup(char *str);
 
 // Memory Management
-void		allocate_memory(t_word_arrays *arrays);
-void		free_memory(t_word_arrays *arrays);
+void	allocate_memory(t_words *arrays);
+void	free_memory(t_words *arrays);
 
 // Parsing
-void		populate_vocab(t_word_arrays *vocab, char *number, char *word);
-bool		parsed_dict(t_word_arrays *vocab, t_parser_data *data, char *dict);
+void	populate_vocab(t_words *vocab, char *number, char *word);
+bool	parsed_dict(t_words *vocab, t_parser_data *data, char *dict);
 
 // Numbers to Words
-void		ntow(long long n, char **result, t_word_arrays *vocab);
+void	ntow(int n, char **result, t_words *vocab);
 
 #endif

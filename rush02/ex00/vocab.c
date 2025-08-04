@@ -12,10 +12,10 @@
 
 #include "rush02.h"
 
-static void	find_thousand(t_word_arrays *vocab, char *word, long n)
+static void	find_thousand(t_words *vocab, char *word, int n)
 {
-	int			i;
-	long long	thousand;
+	int	i;
+	int	thousand;
 
 	i = 0;
 	thousand = 1000;
@@ -23,7 +23,7 @@ static void	find_thousand(t_word_arrays *vocab, char *word, long n)
 	{
 		if (n == thousand)
 		{
-			ft_strcpy(vocab->powers_of_ten[i + 1], word);
+			ft_strcpy(vocab->powers_of_ten[i], word);
 			break ;
 		}
 		thousand *= 1000;
@@ -31,11 +31,11 @@ static void	find_thousand(t_word_arrays *vocab, char *word, long n)
 	}
 }
 
-void	populate_vocab(t_word_arrays *vocab, char *number, char *word)
+void	populate_vocab(t_words *vocab, char *number, char *word)
 {
-	long long	n;
+	int	n;
 
-	n = ft_atoll(number);
+	n = ft_atoi(number);
 	if (n == 0)
 		ft_strcpy(vocab->zero, word);
 	else if (n < 10)

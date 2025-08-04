@@ -19,7 +19,7 @@ static void	past_number(t_parser_data *data)
 	data->idx = 0;
 }
 
-static t_line_status	line(t_parser_data *data, t_word_arrays *vocab, int fd)
+static t_line_status	line(t_parser_data *data, t_words *vocab, int fd)
 {
 	data->reached_word = false;
 	data->word[data->idx] = '\0';
@@ -48,7 +48,7 @@ static void	advance(t_parser_data *data)
 		data->word[data->idx++] = data->buffer[0];
 }
 
-bool	parsed_dict(t_word_arrays *vocab, t_parser_data *data, char *dict_name)
+bool	parsed_dict(t_words *vocab, t_parser_data *data, char *dict_name)
 {
 	int				fd;
 	t_line_status	status;
